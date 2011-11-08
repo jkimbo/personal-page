@@ -101,19 +101,29 @@ $(document).ready(function(){
     /*
      * Smiley Slider
      */
-    var s = new SmileySlider(document.getElementById("slider"), 'img/smiley-slider.png');
-    
-    //s.position(0) // make it sad
-    //s.position(1) // make it happy
-    
-    //var p = s.position() // get it's position
-    //s.position(p / 2) // make it half as happy
-    
-    s.position(function (p) {
-        // do something when it changes
-        //console.log('mousemove', p);
-    }, function (p) {
-        console.log('mouseup',p);          
-    })
+    if($('#slider').length) {
+        var s = new SmileySlider(document.getElementById("slider"), 'img/smiley-slider.png');
+        
+        //s.position(0) // make it sad
+        //s.position(1) // make it happy
+        
+        //var p = s.position() // get it's position
+        //s.position(p / 2) // make it half as happy
+        
+        s.position(function (p) {
+            // do something when it changes
+            //console.log('mousemove', p);
+        }, function (p) {
+            console.log('mouseup',p);          
+        })
+
+        var slidercont = $('#slidercont');
+        var hint = slidercont.find('#hint');
+        $('#slider').hover(function() {
+            hint.fadeIn('100');
+        }, function() {
+            hint.fadeOut('100');
+        });
+    }
 });
 

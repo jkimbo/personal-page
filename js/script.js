@@ -86,6 +86,9 @@ $(document).ready(function(){
         return false;
     });
 
+    /*
+     * Recursion baby!
+     */
     function randNum(array) {
         var rand_num = Math.floor(Math.random()*(array.length));
         if($.inArray(rand_num, old_rand_num_array) !== -1 ){ // if number is in array
@@ -94,5 +97,23 @@ $(document).ready(function(){
             return rand_num;
         }
     }
+
+    /*
+     * Smiley Slider
+     */
+    var s = new SmileySlider(document.getElementById("slider"), 'img/smiley-slider.png');
+    
+    //s.position(0) // make it sad
+    //s.position(1) // make it happy
+    
+    //var p = s.position() // get it's position
+    //s.position(p / 2) // make it half as happy
+    
+    s.position(function (p) {
+        // do something when it changes
+        //console.log('mousemove', p);
+    }, function (p) {
+        console.log('mouseup',p);          
+    })
 });
 

@@ -104,6 +104,9 @@ $(document).ready(function(){
     if($('#slider').length) {
         var s = new SmileySlider(document.getElementById("slider"), 'img/smiley-slider.png');
         
+        var slidercont = $('#slidercont');
+        var hint = slidercont.find('#hint');
+
         //s.position(0) // make it sad
         //s.position(1) // make it happy
         
@@ -112,13 +115,18 @@ $(document).ready(function(){
         
         s.position(function (p) {
             // do something when it changes
-            //console.log('mousemove', p);
+            // console.log('mousemove', p);
         }, function (p) {
-            console.log('mouseup',p);          
+            var status = slidercont.find('#status');
+            if(p < 0.5) {
+                status.html("Oh don't be sad!").hide().fadeIn('100');
+            } else if (p > 0.5) {
+                status.html("Yay! Happy happy happy!").hide().fadeIn('100');
+            } else if (p == 0.5) {
+                status.html("Wow you are completely neutral. How do you manage it?").hide().fadeIn('100');
+            }
         })
 
-        var slidercont = $('#slidercont');
-        var hint = slidercont.find('#hint');
         $('#slider').hover(function() {
             hint.fadeIn('100');
         }, function() {

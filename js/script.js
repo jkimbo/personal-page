@@ -51,6 +51,17 @@ $(document).ready(function(){
 
     // Random greeting
     $('#frontpage #reload').click(function() {
+        changeGreeting();
+        return false;
+    });
+
+    // Random greeting
+    $('#frontpage #reload-greeting').click(function() {
+        changeGreeting();
+        return false;
+    });
+
+    function changeGreeting() {
         var rand_num = randNum(greeting);
         old_rand_num_array.push(rand_num);
         if(old_rand_num_array.length > (greeting.length*0.7)){
@@ -59,14 +70,13 @@ $(document).ready(function(){
         // jQuery Transition
         var header = $('#header');
         header.fadeOut('fast', function() {
-            $('#header').text(greeting[rand_num]);
+            $('#header a').text(greeting[rand_num]);
             header.show(0, function() {
                 $('header').bigtext();
             });
         });
-        return false;
-    });
-    
+    }
+
     // Random error
     $('#error #reload').click(function() {
         var rand_num = randNum(error);
